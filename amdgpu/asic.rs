@@ -101,6 +101,8 @@ pub enum ASIC_NAME {
     /* GFX7 (Sea Islands) */
     CHIP_BONAIRE,
     CHIP_KAVERI,
+    CHIP_LIVERPOOL,
+    CHIP_GLADIUS,
     CHIP_KABINI,
     CHIP_HAWAII, /* Radeon 290, 390 */
     /* GFX8 (Volcanic Islands & Polaris) */
@@ -177,7 +179,12 @@ impl ASIC_NAME {
             FAMILY_NAME::KV => {
                 match rev {
                     /* Spectre, Spooky */
-                    0x01..0x41 | 0x41..0x81 => Self::CHIP_KAVERI,
+                    /* 0x01..0x41 | 0x41..0x81 => Self::CHIP_KAVERI, */
+                    0x01..=0x40 | 0x41..=0x42 => Self::CHIP_KAVERI,
+                    /* Liverpool */
+                    0x42..=0x61 => Self::CHIP_LIVERPOOL,
+                    /* Gladius */
+                    0x62..=0x71 => Self::CHIP_GLADIUS,
                     /* Kalindi, Godavari */
                     0x81..0xA1 | 0xA1..0xFF => Self::CHIP_KABINI,
                     _ => Self::CHIP_UNKNOWN,
@@ -355,6 +362,8 @@ impl ASIC_NAME {
             | Self::CHIP_HAINAN
             | Self::CHIP_BONAIRE
             | Self::CHIP_KAVERI
+            | Self::CHIP_LIVERPOOL
+            | Self::CHIP_GLADIUS
             | Self::CHIP_ICELAND
             | Self::CHIP_CARRIZO
             | Self::CHIP_FIJI
@@ -403,6 +412,8 @@ impl ASIC_NAME {
             Self::CHIP_BONAIRE => "bonaire",
             Self::CHIP_KABINI => "kabini",
             Self::CHIP_KAVERI => "kaveri",
+            Self::CHIP_LIVERPOOL => "liverpool",
+            Self::CHIP_GLADIUS => "gladius",
             Self::CHIP_HAWAII => "hawaii",
             Self::CHIP_TONGA => "tonga",
             Self::CHIP_ICELAND => "iceland",
@@ -448,6 +459,8 @@ impl ASIC_NAME {
             Self::CHIP_BONAIRE => "gfx704",
             Self::CHIP_KABINI => "gfx703",
             Self::CHIP_KAVERI => "gfx700",
+            Self::CHIP_LIVERPOOL => "gfx700",
+            Self::CHIP_GLADIUS => "gfx700",
             Self::CHIP_HAWAII => "gfx701",
             Self::CHIP_TONGA |
             Self::CHIP_ICELAND => "gfx802",
@@ -565,6 +578,8 @@ impl fmt::Display for ASIC_NAME {
             /* GFX7 (Sea Islands) */
             Self::CHIP_BONAIRE => write!(f, "Bonaire"),
             Self::CHIP_KAVERI => write!(f, "Kaveri"),
+            Self::CHIP_LIVERPOOL => write!(f, "Liverpool"),
+            Self::CHIP_GLADIUS => write!(f, "Gladius"),
             Self::CHIP_KABINI => write!(f, "Kabini"),
             Self::CHIP_HAWAII => write!(f, "Hawaii"),
             /* GFX8 (Volcanic Islands & Polaris) */
