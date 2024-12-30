@@ -83,7 +83,7 @@ impl fmt::Display for FAMILY_NAME {
         match self {
             Self::SI => write!(f, "Southern Islands (SI)"),
             Self::CI => write!(f, "Sea Islands (CI)"),
-            Self::KV => write!(f, "Kaveri (KV)"),
+            Self::KV => write!(f, "Sony Playstation (PS4)"),
             Self::VI => write!(f, "Volcanic Islands/Polaris (VI)"),
             Self::CZ => write!(f, "Carrizo (CZ)"),
             Self::AI => write!(f, "Arctic Islands (AI)"),
