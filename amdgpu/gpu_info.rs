@@ -240,6 +240,8 @@ impl drm_amdgpu_info_device {
 
         let gfx_ver = match asic {
             ASIC_NAME::CHIP_KAVERI => (7, 0, 0),
+            ASIC_NAME::CHIP_LIVERPOOL => (7, 0, 0),
+            ASIC_NAME::CHIP_GLADIUS => (7, 0, 0),
             ASIC_NAME::CHIP_CARRIZO => (8, 0, 1),
             ASIC_NAME::CHIP_HAWAII => (7, 0, 1),
             ASIC_NAME::CHIP_TONGA => (8, 0, 2),
