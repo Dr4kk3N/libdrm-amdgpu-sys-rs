@@ -101,6 +101,7 @@ pub enum ASIC_NAME {
     /* GFX7 (Sea Islands) */
     CHIP_BONAIRE,
     CHIP_LIVERPOOL,
+    CHIP_GLADIUS,
     CHIP_KAVERI,
     CHIP_KABINI,
     CHIP_HAWAII, /* Radeon 290, 390 */
@@ -110,7 +111,6 @@ pub enum ASIC_NAME {
     CHIP_CARRIZO,
     CHIP_FIJI, /* Radeon Fury */
     CHIP_STONEY,
-    CHIP_GLADIUS,
     CHIP_POLARIS10, /* Radeon 470, 480, 570, 580, 590 */
     CHIP_POLARIS11, /* Radeon 460, 560 */
     CHIP_POLARIS12, /* Radeon 540, 550 */
@@ -188,6 +188,8 @@ impl ASIC_NAME {
                     0x01..0x41 | 0x41..0x61 => Self::CHIP_KAVERI,
                     /* Liverpool */
                     0x61..0x71 | 0x61..0x71 => Self::CHIP_LIVERPOOL,
+                    /* Gladius */
+                    0x71..0x81 | 0x71..0x81 => Self::CHIP_GLADIUS,
                     /* Kalindi, Godavari */
                     0x81..0xA1 | 0xA1..0xFF => Self::CHIP_KABINI,
                     _ => Self::CHIP_UNKNOWN,
@@ -197,7 +199,6 @@ impl ASIC_NAME {
                 0x01..0x14 => Self::CHIP_ICELAND,
                 0x14..0x28 => Self::CHIP_TONGA,
                 0x3C..0x50 => Self::CHIP_FIJI,
-                0x71..0x81 => Self::CHIP_GLADIUS,
                 0x50..0x5A => Self::CHIP_POLARIS10,
                 0x5A..0x64 => Self::CHIP_POLARIS11,
                 0x64..0x6E => Self::CHIP_POLARIS12,
@@ -367,11 +368,11 @@ impl ASIC_NAME {
             | Self::CHIP_HAINAN
             | Self::CHIP_BONAIRE
             | Self::CHIP_LIVERPOOL
+            | Self::CHIP_GLADIUS
             | Self::CHIP_KAVERI
             | Self::CHIP_ICELAND
             | Self::CHIP_CARRIZO
             | Self::CHIP_FIJI
-            | Self::CHIP_GLADIUS
             | Self::CHIP_POLARIS12
             | Self::CHIP_VEGAM => 128 * 1024,
             Self::CHIP_REMBRANDT |
@@ -474,7 +475,7 @@ impl ASIC_NAME {
             Self::CHIP_CARRIZO => "gfx801",
             Self::CHIP_FIJI => "gfx803",
             Self::CHIP_STONEY => "gfx810",
-            Self::CHIP_GLADIUS => "gfx803",
+            Self::CHIP_GLADIUS => "gfx704",
             Self::CHIP_POLARIS10 |
             Self::CHIP_POLARIS11 |
             Self::CHIP_POLARIS12 |
@@ -585,6 +586,7 @@ impl fmt::Display for ASIC_NAME {
             /* GFX7 (Sea Islands) */
             Self::CHIP_BONAIRE => write!(f, "Bonaire"),
             Self::CHIP_LIVERPOOL => write!(f, "Liverpool"),
+            Self::CHIP_GLADIUS => write!(f, "Gladius"),
             Self::CHIP_KAVERI => write!(f, "Kaveri"),
             Self::CHIP_KABINI => write!(f, "Kabini"),
             Self::CHIP_HAWAII => write!(f, "Hawaii"),
@@ -594,7 +596,6 @@ impl fmt::Display for ASIC_NAME {
             Self::CHIP_CARRIZO => write!(f, "Carrizo"),
             Self::CHIP_FIJI => write!(f, "Fiji"),
             Self::CHIP_STONEY => write!(f, "Stoney"),
-            Self::CHIP_GLADIUS => write!(f, "Gladius"),
             Self::CHIP_POLARIS10 => write!(f, "Polaris10"),
             Self::CHIP_POLARIS11 => write!(f, "Polaris11"),
             Self::CHIP_POLARIS12 => write!(f, "Polaris12"),
